@@ -1,13 +1,48 @@
+import './App.css'
 import Cabecalho from "./components/cabecalho/Cabecalho"
-import Card from "./components/card/aluno"
+import Rodape from "./components/rodape/Rodape"
+import { alunos } from './data/listaAlunos'
+import Card from './components/card/aluno'
+import CardDisciplina from './components/cardDisciplina/cardDisciplina'
+import { disciplinas } from './data/listaDisciplina'
 
 function App() {
   return (
-    <> 
-      <Cabecalho/>
-      <Card/>
-    </> // Fragment serve para agrupar os elementos sem adicionar um nó extra ao DOM
+    <>
+    <div className='componentes'>
+     <Cabecalho/>
+       {alunos.map((aluno) => (
+
+     <Card
+        key={aluno.id}
+        nomeAluno={aluno.nome}
+        cursoAluno={aluno.curso}
+        statusAluno={aluno.ativo}
+        />
+       ))}
+
+
+      <>
+        <div className='componentes'>
+          {disciplinas.map((disciplina) => (
+            <CardDisciplina
+              key={disciplina.id}
+              nomeDisciplina={disciplina.nomeDisciplina}
+              professorDisciplina={disciplina.professorDisciplina}
+              cargaHorariaDisciplina={disciplina.cargaHorariaDisciplina}
+              concluidaDisciplina={disciplina.concluidaDisciplina}
+            />
+          ))}
+        </div>
+      </>
+        
+      <Rodape/>
+    </div>
+     </>
+      // Fragment serve para agrupar os elementos sem adicionar um nó extra ao DOM
+  
   )
+  
 }
 
 export default App
